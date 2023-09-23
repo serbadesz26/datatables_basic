@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Phone;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,6 +20,13 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $this->call(UserTableSeeder::class);
+        // $this->call(UserTableSeeder::class);
+        $totalInstances = 500000;
+        $batchSize = 10000;
+        $totalBatches = ceil($totalInstances / $batchSize);
+
+        for ($i = 0; $i < $totalBatches; $i++) {
+            Phone::factory()->count($batchSize)->create();
+        }
     }
 }

@@ -33,6 +33,7 @@ class DataController extends Controller
     public function paginate()
     {
         $users = User::with('phone')->paginate(10);
+        return response()->json($users);
         return view('paginate', ['users' => $users]);
     }
 }
